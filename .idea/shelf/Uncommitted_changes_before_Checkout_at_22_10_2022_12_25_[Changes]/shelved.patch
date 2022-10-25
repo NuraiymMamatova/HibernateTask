@@ -1,0 +1,225 @@
+Index: jdbc/jdbcAndHibernate/src/main/java/peaksoft/model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/model/User.java b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/model/User.java
+--- a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/model/User.java	
++++ b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/model/User.java	
+@@ -5,6 +5,7 @@
+ @Table
+ public class User {
+     @Id
++    @GeneratedValue (strategy = GenerationType.IDENTITY)
+     private Long id;
+ 
+     @Column
+Index: jdbc/jdbcAndHibernate/src/main/java/peaksoft/service/UserServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/service/UserServiceImpl.java b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/service/UserServiceImpl.java
+--- a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/service/UserServiceImpl.java	
++++ b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/service/UserServiceImpl.java	
+@@ -1,31 +1,37 @@
+ package peaksoft.service;
+ 
++import peaksoft.dao.UserDao;
++import peaksoft.dao.UserDaoJdbcImpl;
+ import peaksoft.model.User;
+ 
++import java.sql.SQLException;
+ import java.util.List;
+ 
+ public class UserServiceImpl implements UserService {
++    UserDao userDaoJdbc = new UserDaoJdbcImpl();
+ 
+-    public void createUsersTable() {
+-
++    public void createUsersTable() throws SQLException {
++        userDaoJdbc.createUsersTable();
+     }
+ 
+     public void dropUsersTable() {
+-
++        userDaoJdbc.dropUsersTable();
+     }
+ 
+     public void saveUser(String name, String lastName, byte age) {
+-
++        userDaoJdbc.saveUser(name, lastName, age);
+     }
+ 
+     public void removeUserById(long id) {
+-
++        userDaoJdbc.removeUserById(id);
+     }
+ 
+     public List<User> getAllUsers() {
+-        return null;
++
++        return userDaoJdbc.getAllUsers();
+     }
+ 
+     public void cleanUsersTable() {
++        userDaoJdbc.cleanUsersTable();
+     }
+ }
+Index: jdbc/jdbcAndHibernate/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/pom.xml b/jdbc/jdbcAndHibernate/pom.xml
+--- a/jdbc/jdbcAndHibernate/pom.xml	
++++ b/jdbc/jdbcAndHibernate/pom.xml	
+@@ -77,6 +77,6 @@
+           <version>2.8.2</version>
+         </plugin>
+       </plugins>
+-    </pluginManagement>
++    </pluginManagement><plugins><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration><source>16</source><target>16</target></configuration></plugin></plugins>
+   </build>
+ </project>
+Index: jdbc/jdbcAndHibernate/jdbcAndHibernate.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/jdbcAndHibernate.iml b/jdbc/jdbcAndHibernate/jdbcAndHibernate.iml
+deleted file mode 100644
+--- a/jdbc/jdbcAndHibernate/jdbcAndHibernate.iml	
++++ /dev/null	
+@@ -1,2 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="JAVA_MODULE" version="4" />
+\ No newline at end of file
+Index: jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoJdbcImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoJdbcImpl.java b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoJdbcImpl.java
+deleted file mode 100644
+--- a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoJdbcImpl.java	
++++ /dev/null	
+@@ -1,36 +0,0 @@
+-package peaksoft.dao;
+-
+-import peaksoft.model.User;
+-
+-import java.util.List;
+-
+-public class UserDaoJdbcImpl implements UserDao {
+-
+-    public UserDaoJdbcImpl() {
+-
+-    }
+-
+-    public void createUsersTable() {
+-
+-    }
+-
+-    public void dropUsersTable() {
+-
+-    }
+-
+-    public void saveUser(String name, String lastName, byte age) {
+-
+-    }
+-
+-    public void removeUserById(long id) {
+-
+-    }
+-
+-    public List<User> getAllUsers() {
+-        return null;
+-    }
+-
+-    public void cleanUsersTable() {
+-
+-    }
+-}
+\ No newline at end of file
+Index: jdbc/jdbcAndHibernate/src/main/java/peaksoft/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/Main.java b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/Main.java
+deleted file mode 100644
+--- a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/Main.java	
++++ /dev/null	
+@@ -1,7 +0,0 @@
+-package peaksoft;
+-
+-public class Main {
+-    public static void main(String[] args) {
+-        // реализуйте алгоритм здесь
+-    }
+-}
+Index: jdbc/jdbcAndHibernate/src/main/java/peaksoft/util/Util.java
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/util/Util.java b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/util/Util.java
+deleted file mode 100644
+--- a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/util/Util.java	
++++ /dev/null	
+@@ -1,5 +0,0 @@
+-package peaksoft.util;
+-
+-public class Util {
+-    // реализуйте настройку соеденения с БД
+-}
+Index: jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java
+deleted file mode 100644
+--- a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java	
++++ /dev/null	
+@@ -1,42 +0,0 @@
+-package peaksoft.dao;
+-
+-import peaksoft.model.User;
+-
+-import java.util.List;
+-
+-public class UserDaoHibernateImpl implements UserDao {
+-
+-    public UserDaoHibernateImpl() {
+-
+-    }
+-
+-    @Override
+-    public void createUsersTable() {
+-
+-    }
+-
+-    @Override
+-    public void dropUsersTable() {
+-
+-    }
+-
+-    @Override
+-    public void saveUser(String name, String lastName, byte age) {
+-
+-    }
+-
+-    @Override
+-    public void removeUserById(long id) {
+-
+-    }
+-
+-    @Override
+-    public List<User> getAllUsers() {
+-        return null;
+-    }
+-
+-    @Override
+-    public void cleanUsersTable() {
+-
+-    }
+-}

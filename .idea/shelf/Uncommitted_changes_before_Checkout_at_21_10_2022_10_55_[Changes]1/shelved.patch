@@ -1,0 +1,36 @@
+Index: jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java
+--- a/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java	
++++ b/jdbc/jdbcAndHibernate/src/main/java/peaksoft/dao/UserDaoHibernateImpl.java	
+@@ -2,6 +2,7 @@
+ 
+ import peaksoft.model.User;
+ 
++import javax.persistence.*;
+ import java.util.List;
+ 
+ public class UserDaoHibernateImpl implements UserDao {
+Index: jdbc/jdbcAndHibernate/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/pom.xml b/jdbc/jdbcAndHibernate/pom.xml
+--- a/jdbc/jdbcAndHibernate/pom.xml	
++++ b/jdbc/jdbcAndHibernate/pom.xml	
+@@ -21,6 +21,11 @@
+ 
+   <dependencies>
+     <dependency>
++      <groupId>org.projectlombok</groupId>
++      <artifactId>lombok</artifactId>
++      <version>1.18.24</version>
++    </dependency>
++    <dependency>
+       <groupId>org.postgresql</groupId>
+       <artifactId>postgresql</artifactId>
+       <version>42.2.19</version>

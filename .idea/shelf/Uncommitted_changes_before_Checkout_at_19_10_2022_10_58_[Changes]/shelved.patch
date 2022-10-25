@@ -1,0 +1,13 @@
+Index: jdbc/jdbcAndHibernate/jdbcAndHibernate.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/jdbc/jdbcAndHibernate/jdbcAndHibernate.iml b/jdbc/jdbcAndHibernate/jdbcAndHibernate.iml
+deleted file mode 100644
+--- a/jdbc/jdbcAndHibernate/jdbcAndHibernate.iml	(revision cdc348ed886bc2c71b9b80640d9a5c187a5fb63c)
++++ /dev/null	(revision cdc348ed886bc2c71b9b80640d9a5c187a5fb63c)
+@@ -1,2 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="JAVA_MODULE" version="4" />
+\ No newline at end of file
